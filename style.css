@@ -1,70 +1,411 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    /* LeetCode Official Light Palette */
+    --lc-brand: #FFA116;
+    --lc-brand-hover: #FA8C16;
+    --lc-brand-gradient: linear-gradient(135deg, #FFA116 0%, #FF7A00 100%);
+    --lc-brand-glow: rgba(255, 161, 22, 0.35);
+    
+    --lc-easy: #00B8A3;
+    --lc-medium: #FFC01E;
+    --lc-hard: #FF375F;
+    
+    --bg-page-start: #F7F8FA;
+    --bg-page-end: #EBF0F5;
+    
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.85);
+    --glass-inner-border: rgba(0, 0, 0, 0.06);
+    --glass-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08), 
+                    0 4px 16px -2px rgba(0, 0, 0, 0.04),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    
+    --input-bg: rgba(244, 245, 248, 0.8);
+    --input-border: rgba(0, 0, 0, 0.08);
+    --input-hover-border: rgba(255, 161, 22, 0.5);
+    --input-focus-ring: 0 0 0 3.5px rgba(255, 161, 22, 0.22);
+
+    --text-primary: #1A1A1A;
+    --text-secondary: #595959;
+    --text-muted: #8C8C8C;
+    
+    /* Apple-like Spring & Fluid Timing */
+    --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --apple-transition: all 0.35s var(--apple-ease);
+}
+
+*, *::before, *::after {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-body{
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    min-width: 100vh;
-    background-color: rgb(50, 177, 173);
+    background: radial-gradient(circle at 10% 20%, rgba(255, 161, 22, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 184, 163, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 80%),
+                linear-gradient(135deg, var(--bg-page-start) 0%, var(--bg-page-end) 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    position: relative;
+    padding: 1.5rem;
 }
-.container{
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 1.5rem;
-    height: auto;
 
-    width: 60vh;
+/* Ambient animated background orbs for enhanced Apple glassmorphism */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.65;
+    animation: floatAmbient 14s ease-in-out infinite alternate;
 }
-form{
-    margin: 2rem 0 1rem 0;
-    display:flex;
-    flex-direction:column;
-    gap:1rem;
+
+body::before {
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(255, 161, 22, 0.3) 0%, rgba(255, 161, 22, 0) 70%);
+    top: 8%;
+    left: 15%;
 }
-form p{
-    padding-bottom:.5rem ;
+
+body::after {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(0, 184, 163, 0.25) 0%, rgba(0, 184, 163, 0) 70%);
+    bottom: 8%;
+    right: 15%;
+    animation-delay: -7s;
 }
-form select{
-    width:100%;
-    border:none;
-    border-radius:.75rem;
-    height:30px;
-    padding-left:.5rem;
-    border-radius:.75rem;
-    background-color:rgb(221, 216, 216);
+
+@keyframes floatAmbient {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    50% {
+        transform: translate(30px, -40px) scale(1.08);
+    }
+    100% {
+        transform: translate(-25px, 30px) scale(0.95);
+    }
 }
-form select:hover {
-    border: 2px solid #0B1020;
-}
-form select,button,input{
+
+/* Container with Apple-style Glassmorphism */
+.container {
+    position: relative;
+    z-index: 1;
+    background: var(--glass-bg);
+    backdrop-filter: blur(28px) saturate(190%);
+    -webkit-backdrop-filter: blur(28px) saturate(190%);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.75rem;
+    box-shadow: var(--glass-shadow);
+    padding: 2.25rem;
     width: 100%;
+    max-width: 460px;
+    animation: containerEntrance 0.8s var(--apple-ease) backwards;
+    transition: transform 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
+}
+
+.container:hover {
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.11), 
+                0 6px 20px -2px rgba(0, 0, 0, 0.05),
+                inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+@keyframes containerEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Header section */
+.header-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.header-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-left: 1.15rem;
+}
+
+/* Header styling */
+h2 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.1rem;
+}
+
+/* LeetCode styled accent for title */
+h2::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 22px;
+    background: var(--lc-brand-gradient);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px var(--lc-brand-glow);
+}
+
+/* Form Styles */
+form {
+    margin: 1.5rem 0 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+}
+
+form > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+form p {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+/* Custom Dropdowns */
+.topic-container, .subtopic-container, .difficulty-container {
+    position: relative;
+    width: 100%;
+}
+
+.topic-container::after, .subtopic-container::after, .difficulty-container::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--text-muted);
+    pointer-events: none;
+    transition: transform 0.25s var(--apple-ease), border-top-color 0.25s ease;
+}
+
+.topic-container:focus-within::after,
+.subtopic-container:focus-within::after,
+.difficulty-container:focus-within::after {
+    transform: translateY(-50%) rotate(180deg);
+    border-top-color: var(--lc-brand);
+}
+
+form select {
+    width: 100%;
+    height: 44px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 0.85rem;
+    padding: 0 2.2rem 0 1rem;
+    font-family: inherit;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    outline: none;
+    transition: var(--apple-transition);
+}
+
+form select:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-color: var(--input-hover-border);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+form select:focus {
+    background-color: #ffffff;
+    border-color: var(--lc-brand);
+    box-shadow: var(--input-focus-ring), 0 4px 12px rgba(255, 161, 22, 0.1);
+}
+
+form select option {
+    background-color: #ffffff;
+    color: var(--text-primary);
+    padding: 8px;
+}
+
+/* Suggest Button with Apple-like micro-animations and LeetCode Brand Gradient */
+#suggest-btn {
+    width: 100%;
+    height: 46px;
     border: none;
-    height: 30px;
-    border-radius: 0.5rem;
+    border-radius: 0.85rem;
+    background: var(--lc-brand-gradient);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.96rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    box-shadow: 0 4px 14px var(--lc-brand-glow), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    transition: var(--apple-transition);
 }
-#suggest-btn{
-    width:100%;
-    height:40px;
-    border:none;
-    border-radius:0.75rem;
-    background-color:rgb(140, 33, 185);
-    color:white;
-    font-size:1rem;
-    cursor:pointer;
+
+/* Subtle Apple shine / sweep on hover */
+#suggest-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    transition: transform 0.6s ease;
 }
-.suggestion-box{
-    margin-top:1.5rem;
-    padding:1rem;
-    height:100px;
-    background-color:rgb(221, 216, 216);
-    overflow-y:auto;
+
+#suggest-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 161, 22, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }
-.suggestion-box a{
+
+#suggest-btn:hover::before {
+    transform: translateX(200%);
+}
+
+#suggest-btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 8px var(--lc-brand-glow);
+}
+
+/* Suggestion Result Box */
+.suggestion-box {
+    margin-top: 1.4rem;
+    padding: 0.75rem;
+    min-height: 120px;
+    max-height: 240px;
+    background: rgba(247, 248, 250, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: var(--apple-transition);
+}
+
+/* Empty state placeholder style */
+.suggestion-box:empty::before {
+    content: "Select filters & click suggest to view problems";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 90px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.empty-state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 90px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Suggestion Link Items */
+.suggestion-box a {
     display: block;
-    padding-bottom: 0.4rem;
-    color: #0B1020;
-    text-decoration:none;
+    padding: 0.7rem 0.9rem;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 0.65rem;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--apple-transition);
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    animation: itemSlideIn 0.35s var(--apple-ease) backwards;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+@keyframes itemSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.suggestion-box a:hover {
+    background: #ffffff;
+    color: var(--lc-brand-hover);
+    border-color: rgba(255, 161, 22, 0.45);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Sleek Apple-style Scrollbar */
+.suggestion-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.suggestion-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.suggestion-box::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.suggestion-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.28);
+}
