@@ -355,10 +355,12 @@ form select option {
 
 /* Suggestion Link Items */
 .suggestion-box a {
-    display: block;
-    padding: 0.7rem 0.9rem;
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    padding: 0.65rem 0.85rem;
+    line-height: 1.45;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 0.65rem;
     color: var(--text-primary);
     font-size: 0.88rem;
@@ -368,9 +370,9 @@ form select option {
     position: relative;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     animation: itemSlideIn 0.35s var(--apple-ease) backwards;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    min-height: 42px;
 }
 
 @keyframes itemSlideIn {
@@ -408,4 +410,108 @@ form select option {
 
 .suggestion-box::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.28);
-}
+}
+
+/* ===================================================
+   Mobile Responsiveness (Apple fluid design)
+   =================================================== */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem 0.85rem;
+        min-height: 100dvh;
+        align-items: center;
+    }
+
+    body::before {
+        width: 240px;
+        height: 240px;
+        filter: blur(50px);
+        top: 2%;
+        left: -10%;
+    }
+
+    body::after {
+        width: 260px;
+        height: 260px;
+        filter: blur(50px);
+        bottom: 2%;
+        right: -10%;
+    }
+
+    .container {
+        padding: 1.5rem 1.25rem;
+        border-radius: 1.4rem;
+        max-width: 100%;
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+    }
+
+    h2 {
+        font-size: 1.45rem;
+    }
+
+    h2::before {
+        height: 20px;
+        width: 5px;
+    }
+
+    form {
+        margin: 1.25rem 0 1rem 0;
+        gap: 1rem;
+    }
+
+    form p {
+        font-size: 0.78rem;
+    }
+
+    form select {
+        height: 42px;
+        font-size: 0.88rem;
+        border-radius: 0.75rem;
+        padding: 0 2rem 0 0.85rem;
+    }
+
+    #suggest-btn {
+        height: 44px;
+        font-size: 0.92rem;
+        border-radius: 0.75rem;
+    }
+
+    .suggestion-box {
+        margin-top: 1.15rem;
+        padding: 0.55rem;
+        min-height: 110px;
+        max-height: 220px;
+        border-radius: 0.85rem;
+        gap: 0.45rem;
+    }
+
+    .suggestion-box:empty::before,
+    .empty-state {
+        font-size: 0.8rem;
+        min-height: 80px;
+    }
+
+    .suggestion-box a {
+        padding: 0.55rem 0.75rem;
+        font-size: 0.84rem;
+        min-height: 38px;
+        border-radius: 0.55rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 1.2rem 1rem;
+        border-radius: 1.2rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    form select, #suggest-btn {
+        height: 40px;
+    }
+}
+
