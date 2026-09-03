@@ -1,34 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-    /* LeetCode Official Light Palette */
+    /* LeetCode Official Dark Mode Palette */
     --lc-brand: #FFA116;
     --lc-brand-hover: #FA8C16;
     --lc-brand-gradient: linear-gradient(135deg, #FFA116 0%, #FF7A00 100%);
-    --lc-brand-glow: rgba(255, 161, 22, 0.35);
+    --lc-brand-glow: rgba(255, 161, 22, 0.32);
     
     --lc-easy: #00B8A3;
     --lc-medium: #FFC01E;
     --lc-hard: #FF375F;
     
-    --bg-page-start: #F7F8FA;
-    --bg-page-end: #EBF0F5;
+    --bg-page-start: #1a1a1a;
+    --bg-page-end: #0d0d0d;
     
-    --glass-bg: rgba(255, 255, 255, 0.72);
-    --glass-border: rgba(255, 255, 255, 0.85);
-    --glass-inner-border: rgba(0, 0, 0, 0.06);
-    --glass-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08), 
-                    0 4px 16px -2px rgba(0, 0, 0, 0.04),
-                    inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    --glass-bg: rgba(30, 30, 32, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-inner-border: rgba(255, 255, 255, 0.05);
+    --glass-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.65), 
+                    0 4px 16px -2px rgba(0, 0, 0, 0.4),
+                    inset 0 1px 1px rgba(255, 255, 255, 0.12);
     
-    --input-bg: rgba(244, 245, 248, 0.8);
-    --input-border: rgba(0, 0, 0, 0.08);
-    --input-hover-border: rgba(255, 161, 22, 0.5);
-    --input-focus-ring: 0 0 0 3.5px rgba(255, 161, 22, 0.22);
+    --input-bg: rgba(45, 45, 48, 0.85);
+    --input-border: rgba(255, 255, 255, 0.12);
+    --input-hover-border: rgba(255, 161, 22, 0.6);
+    --input-focus-ring: 0 0 0 3.5px rgba(255, 161, 22, 0.28);
 
-    --text-primary: #1A1A1A;
-    --text-secondary: #595959;
-    --text-muted: #8C8C8C;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --text-muted: #737373;
     
     /* Apple-like Spring & Fluid Timing */
     --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -49,9 +49,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: radial-gradient(circle at 10% 20%, rgba(255, 161, 22, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 184, 163, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 80%),
+    background: radial-gradient(circle at 10% 20%, rgba(255, 161, 22, 0.09) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 184, 163, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 80%),
                 linear-gradient(135deg, var(--bg-page-start) 0%, var(--bg-page-end) 100%);
     background-attachment: fixed;
     color: var(--text-primary);
@@ -60,32 +60,32 @@ body {
     padding: 1.5rem;
 }
 
-/* Ambient animated background orbs for enhanced Apple glassmorphism */
+/* Ambient animated background orbs for dark mode glassmorphism */
 body::before, body::after {
     content: '';
     position: fixed;
     border-radius: 50%;
-    filter: blur(80px);
+    filter: blur(90px);
     z-index: 0;
     pointer-events: none;
-    opacity: 0.65;
+    opacity: 0.45;
     animation: floatAmbient 14s ease-in-out infinite alternate;
 }
 
 body::before {
-    width: 380px;
-    height: 380px;
-    background: radial-gradient(circle, rgba(255, 161, 22, 0.3) 0%, rgba(255, 161, 22, 0) 70%);
-    top: 8%;
-    left: 15%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 161, 22, 0.22) 0%, rgba(255, 161, 22, 0) 70%);
+    top: 6%;
+    left: 12%;
 }
 
 body::after {
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, rgba(0, 184, 163, 0.25) 0%, rgba(0, 184, 163, 0) 70%);
-    bottom: 8%;
-    right: 15%;
+    width: 440px;
+    height: 440px;
+    background: radial-gradient(circle, rgba(0, 184, 163, 0.18) 0%, rgba(0, 184, 163, 0) 70%);
+    bottom: 6%;
+    right: 12%;
     animation-delay: -7s;
 }
 
@@ -101,7 +101,7 @@ body::after {
     }
 }
 
-/* Container with Apple-style Glassmorphism */
+/* Container with Apple-style Glassmorphism (Dark) */
 .container {
     position: relative;
     z-index: 1;
@@ -119,9 +119,9 @@ body::after {
 }
 
 .container:hover {
-    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.11), 
-                0 6px 20px -2px rgba(0, 0, 0, 0.05),
-                inset 0 1px 1px rgba(255, 255, 255, 1);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.75), 
+                0 6px 20px -2px rgba(0, 0, 0, 0.45),
+                inset 0 1px 1px rgba(255, 255, 255, 0.18);
 }
 
 @keyframes containerEntrance {
@@ -135,20 +135,6 @@ body::after {
     }
 }
 
-/* Header section */
-.header-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-}
-
-.header-desc {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    font-weight: 400;
-    margin-left: 1.15rem;
-}
-
 /* Header styling */
 h2 {
     font-size: 1.65rem;
@@ -158,7 +144,7 @@ h2 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.25rem;
 }
 
 /* LeetCode styled accent for title */
@@ -169,7 +155,7 @@ h2::before {
     height: 22px;
     background: var(--lc-brand-gradient);
     border-radius: 4px;
-    box-shadow: 0 2px 8px var(--lc-brand-glow);
+    box-shadow: 0 2px 10px var(--lc-brand-glow);
 }
 
 /* Form Styles */
@@ -210,7 +196,7 @@ form p {
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid var(--text-muted);
+    border-top: 5px solid var(--text-secondary);
     pointer-events: none;
     transition: transform 0.25s var(--apple-ease), border-top-color 0.25s ease;
 }
@@ -242,20 +228,20 @@ form select {
 }
 
 form select:hover {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(55, 55, 60, 0.9);
     border-color: var(--input-hover-border);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
 }
 
 form select:focus {
-    background-color: #ffffff;
+    background-color: rgba(48, 48, 52, 1);
     border-color: var(--lc-brand);
-    box-shadow: var(--input-focus-ring), 0 4px 12px rgba(255, 161, 22, 0.1);
+    box-shadow: var(--input-focus-ring), 0 4px 14px rgba(255, 161, 22, 0.15);
 }
 
 form select option {
-    background-color: #ffffff;
-    color: var(--text-primary);
+    background-color: #262626;
+    color: #EFF1F6;
     padding: 8px;
 }
 
@@ -272,7 +258,7 @@ form select option {
     font-weight: 600;
     letter-spacing: -0.01em;
     cursor: pointer;
-    box-shadow: 0 4px 14px var(--lc-brand-glow), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 16px var(--lc-brand-glow), inset 0 1px 1px rgba(255, 255, 255, 0.35);
     outline: none;
     position: relative;
     overflow: hidden;
@@ -287,13 +273,13 @@ form select option {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
     transition: transform 0.6s ease;
 }
 
 #suggest-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(255, 161, 22, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(255, 161, 22, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 #suggest-btn:hover::before {
@@ -311,16 +297,16 @@ form select option {
     padding: 0.75rem;
     min-height: 120px;
     max-height: 240px;
-    background: rgba(247, 248, 250, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(20, 20, 22, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
     font-size: 0.9rem;
     color: var(--text-muted);
     transition: var(--apple-transition);
@@ -359,16 +345,16 @@ form select option {
     align-items: center;
     padding: 0.65rem 0.85rem;
     line-height: 1.45;
-    background: rgba(255, 255, 255, 0.88);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(40, 40, 44, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 0.65rem;
-    color: var(--text-primary);
+    color: #EFF1F6;
     font-size: 0.88rem;
     font-weight: 500;
     text-decoration: none;
     transition: var(--apple-transition);
     position: relative;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
     animation: itemSlideIn 0.35s var(--apple-ease) backwards;
     white-space: normal;
     word-break: break-word;
@@ -387,11 +373,11 @@ form select option {
 }
 
 .suggestion-box a:hover {
-    background: #ffffff;
-    color: var(--lc-brand-hover);
-    border-color: rgba(255, 161, 22, 0.45);
+    background: rgba(55, 55, 62, 0.95);
+    color: var(--lc-brand);
+    border-color: rgba(255, 161, 22, 0.55);
     transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 /* Sleek Apple-style Scrollbar */
@@ -404,12 +390,12 @@ form select option {
 }
 
 .suggestion-box::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.18);
     border-radius: 10px;
 }
 
 .suggestion-box::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.28);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 /* ===================================================
@@ -423,17 +409,17 @@ form select option {
     }
 
     body::before {
-        width: 240px;
-        height: 240px;
-        filter: blur(50px);
+        width: 260px;
+        height: 260px;
+        filter: blur(60px);
         top: 2%;
         left: -10%;
     }
 
     body::after {
-        width: 260px;
-        height: 260px;
-        filter: blur(50px);
+        width: 280px;
+        height: 280px;
+        filter: blur(60px);
         bottom: 2%;
         right: -10%;
     }
@@ -514,4 +500,5 @@ form select option {
         height: 40px;
     }
 }
+
 
