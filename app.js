@@ -32,6 +32,7 @@ btn.addEventListener("click", async () => {
     }
     let filtered = data.filter(problem =>
         (diff.value === "" || problem.difficulty === diff.value)
+        && (topicSelect.value==="" || problem.topic_tags.includes(topicSelect.value))
         && (subtopicSelect.value === "" || problem.topic_tags.includes(subtopicSelect.value))
     );
     if (filtered.length === 0) {
